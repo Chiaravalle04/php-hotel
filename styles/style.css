@@ -13,6 +13,15 @@ h1 {
 *:not(h1) {
     font-family: 'Poppins', sans-serif;
 }
+
+/* Regole Generali */
+.d-block {
+    display: block;
+}
+
+.d-none {
+    display: none;
+}
  
 /* Header */
 header {
@@ -26,17 +35,48 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .header-container h1 {
     color: #add8e6;
 }
 
-.header-container button {
+.header-container #filter {
     display: inline-block;
     width: 100px;
     height: 40px;
     border-radius: 15px;
+    border: none;
+    background-color: lightblue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#filter-form {
+    width: 300px;
+    padding: 30px;
+    border-radius: 15px;
+    border: 5px solid lightblue;
+    background-color: white;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    z-index: 99;
+}
+
+#filter-form form h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+#filter-form form #filter-btn {
+    display: block;
+    width: 80px;
+    height: 30px;
+    margin-top: 15px;
+    border-radius: 10px;
     border: none;
     background-color: lightblue;
     color: white;

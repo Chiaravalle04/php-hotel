@@ -46,7 +46,7 @@
             'img' => './img/parigi.jpg',
             'name' => 'Hotel Parigi',
             'description' => 'Accogliente hotel a conduzione familiare con giardino interno e colazione a buffet.',
-            'parking' => true,
+            'parking' => false,
             'vote' => 4,
             'distance_to_center' => 10
         ],
@@ -83,7 +83,27 @@
 
                 <h1>PHP Hotel</h1>
 
-                <button>Filtra</button>
+                <button id="filter">Filtra</button>
+
+                <div id="filter-form">
+
+                    <form action="" method="get">
+
+                        <h2>Hotel con parcheggio:</h2>
+
+                        <label for="parking-yes">Si</label>
+
+                        <input type="radio" name="parking" id="parking-yes" value="yes">
+
+                        <label for="parking-no">No</label>
+
+                        <input type="radio" name="parking" id="parking-no" value="no">
+
+                        <button id="filter-btn">Filtra</button>
+
+                    </form>
+
+                </div>
 
             </div>
 
@@ -93,7 +113,23 @@
 
             <div class="cards">
 
-                <?php foreach ($hotels as $hotel) { ?>
+                <?php
+
+                    if (isset($_GET['parking'])) {
+                    
+                        $parking = $_GET['parking'];
+                    
+                    } else {
+                    
+                        $parking = 'all';
+                    
+                    };
+                
+                    foreach ($hotels as $hotel) {
+                
+                    if ($parking === 'all' || ($parking === 'yes' && $hotel['parking']) || ($parking === 'no' && !$hotel['parking'])) {
+                
+                ?>
 
                     <div class="card">
 
@@ -102,35 +138,38 @@
                         <div class="text">
 
                             <h2> <?php echo $hotel['name'];?> </h2>
-    
+
                             <p> <?php echo $hotel['description'];?> </p>
-    
+
                             <p> <b> Parcheggio: </b>
-    
+
                                 <?php 
                                 
                                     if ($hotel['parking']) {
-                                        echo 'sì';
+                                        echo '<i class="fa-solid fa-check"></i>';
                                     } else {
-                                        echo 'no';
+                                        echo '<i class="fa-solid fa-xmark"></i>';
                                     };
                                 ?> 
                                     
                             </p>
-    
+
                             <p> <b> Voto: </b> <?php echo $hotel['vote'];?> </p>
-    
+
                             <p> <b> Distanza dal centro: </b> <?php echo $hotel['distance_to_center'];?> km </p>
 
                         </div>
 
                     </div>
-                
-                <?php } ?>
+                    
+                <?php } } ?>
 
             </div>
 
         </main>
-        
+    
+        <script src="scripts/script.js"></script>
+
     </body>
+
 </html>
